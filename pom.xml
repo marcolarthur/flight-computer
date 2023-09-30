@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>4.0.0-rc-2</version>
+            <version>3.24.0</version>
         </dependency>
         <dependency>
             <groupId>krpc</groupId>
@@ -28,6 +28,12 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/krpc-java-0.5.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
