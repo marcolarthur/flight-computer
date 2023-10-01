@@ -2,6 +2,7 @@ package com.flightcomputer.mecc;
 
 import com.flightcomputer.mecc.service.MainComputerService;
 import krpc.client.Connection;
+import krpc.client.RPCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,10 +30,8 @@ public class Mecc {
         try {
             Connection connection = getConnection();
             mainComputerService.initiateFlightComputer(connection);
-        } catch (java.net.ConnectException e) {
+        } catch (IOException | RPCException e) {
             System.out.println(e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }
