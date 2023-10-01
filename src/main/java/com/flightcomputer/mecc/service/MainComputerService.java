@@ -31,7 +31,7 @@ public class MainComputerService {
 
     private double initialFuel, initialMass;
 
-    private volatile boolean writeSpeedsActive = true; // Flag to control the loop
+    private volatile boolean writeSpeedsActive = true;
 
     public void initiateFlightComputer(Connection connection) {
         this.connection = connection;
@@ -52,9 +52,6 @@ public class MainComputerService {
 
     private void takeControl() {
         try {
-//            this.activeVessel.getAutoPilot().targetPitchAndHeading(90, 90);
-//            this.activeVessel.getAutoPilot().engage();
-//            this.activeVessel.getControl().setThrottle(1);
             this.initialFuel = this.activeVessel.getResources().amount("LiquidFuel");
             this.initialMass = this.activeVessel.getMass();
             this.flight = this.activeVessel.flight(this.activeVessel.getOrbit().getBody().getNonRotatingReferenceFrame());
@@ -68,10 +65,10 @@ public class MainComputerService {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleAtFixedRate(() -> {
             try {
-//                if (this.flight.getVerticalSpeed() < 0) {
-//                    executorService.shutdown();
-//                    return;
-//                }
+                if (this.flight.getVerticalSpeed() < 0) {
+                    executorService.shutdown();
+                    return;
+                }
                 this.addTexts();
             } catch (RPCException e) {
                 System.out.println(e.getMessage());
